@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "fixture_mode": true,
+  "authority": "This index is the authoritative historical merge-time adapter. GitHub server timestamps cannot be backdated.",
+  "evaluation_window": {
+    "timezone": "Asia/Kolkata",
+    "start": "2026-05-01T00:00:00+05:30",
+    "end": "2026-06-30T23:59:59+05:30"
+  },
+  "pull_requests": [
+    { "number": 1, "historical_merged_at": "2026-05-04T09:30:00+05:30", "backend_application_code": true },
+    { "number": 2, "historical_merged_at": "2026-05-12T14:15:00+05:30", "backend_application_code": true },
+    { "number": 3, "historical_merged_at": "2026-05-20T11:00:00+05:30", "backend_application_code": true },
+    { "number": 4, "historical_merged_at": "2026-06-02T16:20:00+05:30", "backend_application_code": true },
+    { "number": 5, "historical_merged_at": "2026-06-10T10:10:00+05:30", "backend_application_code": true },
+    { "number": 6, "historical_merged_at": "2026-06-14T13:10:00+05:30", "backend_application_code": true },
+    { "number": 7, "historical_merged_at": "2026-06-18T09:05:00+05:30", "backend_application_code": true },
+    { "number": 8, "historical_merged_at": "2026-06-22T17:30:00+05:30", "backend_application_code": true },
+    { "number": 9, "historical_merged_at": "2026-06-26T12:00:00+05:30", "backend_application_code": true },
+    { "number": 10, "historical_merged_at": "2026-06-29T15:45:00+05:30", "backend_application_code": true },
+    { "number": 11, "historical_merged_at": "2026-06-30T22:45:00+05:30", "backend_application_code": false }
+  ]
+}
+

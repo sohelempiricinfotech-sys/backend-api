@@ -1,0 +1,41 @@
+name: API Performance Tests
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  post_merge_benchmark:
+    name: Post-merge API benchmark
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out merged source
+        uses: actions/checkout@v4
+
+      - name: Materialize deterministic fixture evidence
+        id: fixture
+        run: node scripts/perf-fixtures/publish-performance-fixture.mjs
+
+      - name: Upload API Performance Tests result
+        if: ${{ steps.fixture.outputs.primary_artifact == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-performance-results-pr-${{ steps.fixture.outputs.pr_number }}
+          path: performance-results.json
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Upload Supertest performance fallback
+        if: ${{ steps.fixture.outputs.supertest_artifact == 'true' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: supertest-performance-assertions-pr-${{ steps.fixture.outputs.pr_number }}
+          path: supertest-performance-assertions.json
+          if-no-files-found: error
+          retention-days: 90
+

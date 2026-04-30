@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.env
+.env.*
+coverage/
+performance-results.json
+supertest-performance-assertions.json
+

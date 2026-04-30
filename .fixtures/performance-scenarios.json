@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "scenarios": [
+    {
+      "pr_number": 1,
+      "historical_merged_at": "2026-05-04T09:30:00+05:30",
+      "measured_at": "2026-05-04T10:05:00+05:30",
+      "validation": "github_actions",
+      "endpoints": [
+        {
+          "method": "POST",
+          "route_template": "/api/dashboard/stats",
+          "sample_count": 12000,
+          "p50_ms": 94,
+          "p95_ms": 193,
+          "p99_ms": 299,
+          "slow_threshold_ms": 250,
+          "slow_rate": 0.06,
+          "timeout_threshold_ms": 4000,
+          "timeout_rate": 0.0008,
+          "requests_24h": 180000
+        }
+      ]
+    },
+    {
+      "pr_number": 2,
+      "historical_merged_at": "2026-05-12T14:15:00+05:30",
+      "measured_at": "2026-05-12T14:40:00+05:30",
+      "validation": "supertest_only",
+      "endpoints": [
+        {
+          "method": "GET",
+          "route_template": "/api/jobs",
+          "sample_count": 8000,
+          "p50_ms": 112,
+          "p95_ms": 199,
+          "p99_ms": 280,
+          "slow_threshold_ms": 200,
+          "slow_rate": 0.09,
+          "timeout_threshold_ms": 5000,
+          "timeout_rate": 0.001,
+          "requests_24h": 750000
+        }
+      ]
+    },
+    {
+      "pr_number": 3,
+      "historical_merged_at": "2026-05-20T11:00:00+05:30",
+      "measured_at": "2026-05-20T11:35:00+05:30",
+      "validation": "github_actions",
+      "endpoints": [
+        {
+          "method": "GET",
+          "route_template": "/api/submissions",
+          "sample_count": 10000,
+          "p50_ms": 81,
+          "p95_ms": 171,
+          "p99_ms": 281,
+          "slow_threshold_ms": 250,
+          "slow_rate": 0.16,
+          "timeout_threshold_ms": 5000,
+          "timeout_rate": 0.001,
+          "requests_24h": 220000
+        }
+      ]
+    },
+    {
+      "pr_number": 4,
+      "historical_merged_at": "2026-06-02T16:20:00+05:30",
+      "measured_at": "2026-06-02T16:55:00+05:30",
+      "validation": "github_actions",
+      "endpoints": [
+        {
+          "method": "POST",
+          "route_template": "/api/jobs/generate-jd",
+          "sample_count": 5000,
+          "p50_ms": 210,
+          "p95_ms": 3300,
+          "p99_ms": 4600,
+          "slow_threshold_ms": 2500,
+          "slow_rate": 0.73,
+          "timeout_threshold_ms": 4000,
+          "timeout_rate": 0.07,
+          "requests_24h": 18000
+        }
+      ]
+    },
+    {
+      "pr_number": 5,
+      "historical_merged_at": "2026-06-10T10:10:00+05:30",
+      "measured_at": "2026-06-10T10:45:00+05:30",
+      "validation": "github_actions",
+      "endpoints": [
+        {
+          "method": "GET",
+          "route_template": "/api/candidates",
+          "sample_count": 10000,
+          "p50_ms": 131,
+          "p95_ms": 280,
+          "p99_ms": 500,
+          "slow_threshold_ms": 300,
+          "slow_rate": 0.14,
+          "timeout_threshold_ms": 5000,
+          "timeout_rate": 0.001,
+          "requests_24h": 450000
+        },
+        {
+          "method": "GET",
+          "route_template": "/api/candidates/export",
+          "sample_count": 3000,
+          "p50_ms": 390,
+          "p95_ms": 2075,
+          "p99_ms": 4250,
+          "slow_threshold_ms": 2000,
+          "slow_rate": 0.2,
+          "timeout_threshold_ms": 15000,
+          "timeout_rate": 0.0005,
+          "requests_24h": 7500
+        }
+      ]
+    },
+    {
+      "pr_number": 6,
+      "historical_merged_at": "2026-06-14T13:10:00+05:30",
+      "measured_at": "2026-06-14T13:45:00+05:30",
+      "validation": "github_actions",
+      "endpoints": [
+        {
+          "method": "GET",
+          "route_template": "/api/candidates/export",
+          "sample_count": 3000,
+          "p50_ms": 350,
+          "p95_ms": 1900,
+          "p99_ms": 3950,
+          "slow_threshold_ms": 2000,
+          "slow_rate": 0.09,
+          "timeout_threshold_ms": 15000,
+          "timeout_rate": 0.0002,
+          "requests_24h": 7500
+        }
+      ]
+    },
+    {
+      "pr_number": 7,
+      "historical_merged_at": "2026-06-18T09:05:00+05:30",
+      "measured_at": "2026-06-18T09:25:00+05:30",
+      "validation": "github_actions",
+      "endpoints": [
+        {
+          "method": "GET",
+          "route_template": "/health",
+          "sample_count": 15000,
+          "p50_ms": 13,
+          "p95_ms": 32,
+          "p99_ms": 55,
+          "slow_threshold_ms": 100,
+          "slow_rate": 0.001,
+          "timeout_threshold_ms": 1000,
+          "timeout_rate": 0,
+          "requests_24h": 1200000
+        }
+      ]
+    },
+    {
+      "pr_number": 8,
+      "historical_merged_at": "2026-06-22T17:30:00+05:30",
+      "measured_at": "2026-06-22T18:00:00+05:30",
+      "validation": "corrupt_primary_then_supertest",
+      "endpoints": [
+        {
+          "method": "POST",
+          "route_template": "/api/candidates",
+          "sample_count": 4000,
+          "p50_ms": 220,
+          "p95_ms": 525,
+          "p99_ms": 800,
+          "slow_threshold_ms": 1000,
+          "slow_rate": 0.02,
+          "timeout_threshold_ms": 5000,
+          "timeout_rate": 0.0001,
+          "requests_24h": 40000
+        }
+      ]
+    },
+    {
+      "pr_number": 9,
+      "historical_merged_at": "2026-06-26T12:00:00+05:30",
+      "measured_at": "2026-06-26T12:30:00+05:30",
+      "validation": "missing",
+      "endpoints": []
+    },
+    {
+      "pr_number": 10,
+      "historical_merged_at": "2026-06-29T15:45:00+05:30",
+      "measured_at": "2026-06-29T16:15:00+05:30",
+      "validation": "github_actions",
+      "endpoints": [
+        {
+          "method": "POST",
+          "route_template": "/api/auth/refresh-token",
+          "sample_count": 12000,
+          "p50_ms": 70,
+          "p95_ms": 165,
+          "p99_ms": 300,
+          "slow_threshold_ms": 150,
+          "slow_rate": 0.12,
+          "timeout_threshold_ms": 2000,
+          "timeout_rate": 0.001,
+          "requests_24h": 1200000
+        }
+      ]
+    }
+  ]
+}
+
