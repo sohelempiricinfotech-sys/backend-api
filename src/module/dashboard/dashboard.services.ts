@@ -33,6 +33,7 @@ export async function getDashboardStats(
 
   const rangeStart = `${start_date} 00:00:00`;
   const rangeEnd = `${end_date} 23:59:59.999`;
+  const aggregationRange = { rangeStart, rangeEnd };
 
   const hasUserFilter =
     Array.isArray(user_ids) && user_ids.length > 0;
@@ -42,10 +43,7 @@ export async function getDashboardStats(
     .createQueryBuilder("cd")
     .where("cd.org_id = :org_id", { org_id })
     .andWhere("cd.deleted_at IS NULL")
-    .andWhere("cd.created_at BETWEEN :rangeStart AND :rangeEnd", {
-      rangeStart,
-      rangeEnd,
-    });
+    .andWhere("cd.created_at BETWEEN :rangeStart AND :rangeEnd", aggregationRange);
 
   if (hasUserFilter) {
     candidateQb.andWhere("cd.created_by IN (:...user_ids)", { user_ids });
@@ -58,10 +56,7 @@ export async function getDashboardStats(
     .createQueryBuilder("s")
     .where("s.org_id = :org_id", { org_id })
     .andWhere("s.deleted_at IS NULL")
-    .andWhere("s.created_at BETWEEN :rangeStart AND :rangeEnd", {
-      rangeStart,
-      rangeEnd,
-    });
+    .andWhere("s.created_at BETWEEN :rangeStart AND :rangeEnd", aggregationRange);
 
   if (hasUserFilter) {
     submissionsAddedQb.andWhere("s.recruiter_user_id IN (:...user_ids)", {
@@ -83,10 +78,7 @@ export async function getDashboardStats(
     .where("s.org_id = :org_id", { org_id })
     .andWhere("s.deleted_at IS NULL")
     .andWhere("ss.deleted_at IS NULL")
-    .andWhere("s.updated_at BETWEEN :rangeStart AND :rangeEnd", {
-      rangeStart,
-      rangeEnd,
-    })
+    .andWhere("s.updated_at BETWEEN :rangeStart AND :rangeEnd", aggregationRange)
     .select(
       "COUNT(CASE WHEN ss.status_type = 'application' THEN 1 END)",
       "applied_count"
