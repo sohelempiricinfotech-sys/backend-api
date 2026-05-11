@@ -1,0 +1,7 @@
+{
+  "fixture_mode": true,
+  "framework": "supertest",
+  "route_template": "GET /api/jobs",
+  "assertion": "record response-time percentiles after the merged job-list normalization",
+  "artifact": "supertest-performance-assertions-pr-2"
+}

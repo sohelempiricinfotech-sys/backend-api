@@ -113,12 +113,13 @@ const getJobsList = async (
   recruiterUuidId?: string | null
 ) => {
   const { limit, search_after, search, project_id, no_project, filters } = options;
+  const normalizedSearch = search?.trim();
 
   const esOptions: JobFilterOptions = {
     org_id: orgId,
     search_after,
     limit,
-    search: search || undefined,
+    search: normalizedSearch || undefined,
     project_id: project_id || undefined,
     no_project: no_project || undefined,
     skill_ids: filters?.skillIds?.length ? filters.skillIds : undefined,
