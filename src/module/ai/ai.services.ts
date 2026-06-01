@@ -3,6 +3,7 @@ import { AIProvider, AIRequestInput, AIResponse } from "./ai.type";
 const DEFAULT_PROVIDER = AIProvider.OPENAI;
 const DEFAULT_OPENAI_MODEL = "gpt-4.1-nano";
 const DEFAULT_CLAUDE_MODEL = "claude-sonnet-4-20250514";
+const EXTERNAL_AI_REQUEST_BUDGET_MS = 8000;
 
 const callOpenAI = async (
   prompt: string,
@@ -20,6 +21,7 @@ const callOpenAI = async (
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${apiKey}`,
+      "x-client-timeout-ms": String(EXTERNAL_AI_REQUEST_BUDGET_MS),
     },
     body: JSON.stringify({
       model,
@@ -60,6 +62,7 @@ const callClaude = async (
       "Content-Type": "application/json",
       "x-api-key": apiKey,
       "anthropic-version": "2023-06-01",
+      "x-client-timeout-ms": String(EXTERNAL_AI_REQUEST_BUDGET_MS),
     },
     body: JSON.stringify({
       model,
