@@ -1,5 +1,7 @@
 import { SystemRole } from "../module/users/user.model";
 
+const normalizePrefix = (prefix: string): string => prefix.trim().toUpperCase();
+
 export const generateUniqueId = (role: SystemRole): string => {
     let prefix = "";
 
@@ -46,5 +48,5 @@ export const generatePrefixedId = (prefix: string, length: number = 8): string =
     for (let i = 0; i < length; i++) {
         randomId += chars.charAt(Math.floor(Math.random() * chars.length));
     }
-    return `${prefix}-${randomId}`;
+    return `${normalizePrefix(prefix)}-${randomId}`;
 };
