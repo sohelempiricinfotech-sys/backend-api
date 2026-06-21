@@ -233,11 +233,12 @@ export const getCandidates = async (req: Request, res: Response) => {
                 return isNaN(num) ? v : num;
             })
             : undefined;
+        const parsedLimit = Number(limit);
 
         const result = await candidateService.getCandidates(org_id, {
             ...filterOptions,
             search_after: parsedSearchAfter,
-            limit: Number(limit),
+            limit: Number.isFinite(parsedLimit) ? parsedLimit : 20,
             sort_by: sort_by as string | undefined,
             sort_order: (sort_order === "asc" || sort_order === "desc") ? sort_order : undefined,
         });

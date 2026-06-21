@@ -1,0 +1,7 @@
+{
+  "fixture_mode": true,
+  "framework": "supertest",
+  "route_template": "POST /api/candidates",
+  "assertion": "record response-time percentiles when a primary benchmark artifact fails validation",
+  "artifact": "supertest-performance-assertions-pr-8"
+}
