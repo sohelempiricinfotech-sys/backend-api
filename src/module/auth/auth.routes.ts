@@ -88,8 +88,8 @@ router.post("/verify-token", generalLimiter, zValidate(verifyTokenSchema), async
 // Refresh access token
 router.post("/refresh-token", generalLimiter, zValidate(refreshTokenSchema), async (req: Request, res: Response) => {
   try {
-    const result = await refreshToken(req.body);
-    return res.status(200).json(result);
+    const refreshedSession = await refreshToken(req.body);
+    return res.status(200).json(refreshedSession);
   } catch (err: any) {
     return res.status(500).json({ success: false, message: err.message || "Internal server error" });
   }
