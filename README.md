@@ -36,4 +36,6 @@ Other typical vars (add as needed):
 
 See [PERFORMANCE_REGRESSION_FIXTURES.md](PERFORMANCE_REGRESSION_FIXTURES.md) for the intentionally challenging, bounded fixture used to exercise post-merge API performance analysis.
 
+Fixture documentation is intentionally excluded from backend-code performance analysis.
+
 
