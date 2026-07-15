@@ -74,6 +74,7 @@ export const createCandidateSkill = async (data: CreateCandidateSkillInput) => {
 };
 
 export const getCandidates = async (org_id: number, options: GetCandidatesOptions) => {
+    const pageLimit = Math.min(Math.max(options.limit, 1), 100);
     const result = await searchCandidates({
         org_id,
         search: options.search,
@@ -93,7 +94,7 @@ export const getCandidates = async (org_id: number, options: GetCandidatesOption
         updated_by_id: options.updatedById,
         last_activity_min: options.lastActivityFrom,
         search_after: options.search_after,
-        limit: options.limit,
+        limit: pageLimit,
         sort_by: options.sort_by,
         sort_order: options.sort_order,
     });
