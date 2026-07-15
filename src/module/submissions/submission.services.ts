@@ -57,6 +57,9 @@ const calculateAge = (dob: string | null): number | null => {
   return age;
 };
 
+const normalizeDisplayName = (value: string | null | undefined): string =>
+  (value ?? "").trim();
+
 interface GetSubmissionsListOptions {
   search_after?: (string | number)[];
   limit: number;
@@ -166,7 +169,7 @@ const getSubmissionsListFromES = async (orgId: number, options: GetSubmissionsLi
         user_id: doc.user_id,
         submission_status_id: doc.status_id,
         status_name: doc.status_name,
-        full_name: doc.full_name,
+        full_name: normalizeDisplayName(doc.full_name),
         email: doc.email,
         phone: doc.phone,
         profile_photo_url,
