@@ -90,7 +90,8 @@ app.get("/health", async (_req: Request, res: Response) => {
   } catch {
     // ES unavailable — degrade gracefully
   }
-  res.json({ status: "ok", elasticsearch: esStatus });
+  const healthResponse = { status: "ok", elasticsearch: esStatus };
+  res.json(healthResponse);
 });
 
 // Auth routes (no auth middleware - public routes)
