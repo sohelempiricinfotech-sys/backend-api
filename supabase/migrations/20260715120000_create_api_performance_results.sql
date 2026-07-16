@@ -41,6 +41,13 @@ alter table public.api_performance_results enable row level security;
 revoke all on table public.api_performance_results from anon, authenticated;
 grant select, insert, update, delete on table public.api_performance_results to service_role;
 grant usage, select on sequence public.api_performance_results_id_seq to service_role;
+drop policy if exists "service role manages API performance fixtures" on public.api_performance_results;
+create policy "service role manages API performance fixtures"
+  on public.api_performance_results
+  for all
+  to service_role
+  using (true)
+  with check (true);
 
 -- 30-day alternating distributions give every full rolling 30-day window a
 -- deterministic arithmetic mean and sample standard deviation. The small
