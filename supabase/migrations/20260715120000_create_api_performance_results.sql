@@ -65,8 +65,8 @@ with endpoint_seed as (
     e.*, d.d,
     sqrt(29::numeric / 30::numeric) as sample_adjustment,
     ((extract(doy from d.d)::integer + e.phase) % 30) as p50_phase,
-    ((extract(doy from d.d)::integer + e.phase + 7) % 30) as p95_phase,
-    ((extract(doy from d.d)::integer + e.phase + 13) % 30) as p99_phase
+    ((extract(doy from d.d)::integer + e.phase) % 30) as p95_phase,
+    ((extract(doy from d.d)::integer + e.phase) % 30) as p99_phase
   from endpoint_seed e cross join dates d
   where e.route_template <> '/api/auth/refresh-token'
      or d.d between date '2026-06-01' and date '2026-06-28'
@@ -114,11 +114,11 @@ insert into public.api_performance_results (
   slow_rate, timeout_threshold_ms, timeout_rate, fixture_key, metadata
 )
 select
-  (d + time '13:00:00') at time zone 'Asia/Kolkata',
+  (g.d::date + time '13:00:00') at time zone 'Asia/Kolkata',
   'staging', 'load_test_staging', 'complete', 'GET', '/api/jobs',
   500, 1200, 2500, 1000, 0, 200, 0.9, 5000, 0.2,
-  format('decoy:staging:jobs:%s', d), jsonb_build_object('fixture_mode', true, 'ignore_for_baseline', true)
-from generate_series(date '2026-04-01', date '2026-06-30', interval '1 day')::date as d
+  format('decoy:staging:jobs:%s', g.d::date), jsonb_build_object('fixture_mode', true, 'ignore_for_baseline', true)
+from generate_series(date '2026-04-01', date '2026-06-30', interval '1 day') as g(d)
 on conflict (fixture_key) do nothing;
 
 insert into public.api_performance_results (
