@@ -30,6 +30,7 @@ export const loginFunc = async ({
   org_slug?: string;
 }) => {
   try {
+    const normalizedLoginEmail = email.trim().toLowerCase();
     let userOrgId: number | undefined = undefined;
 
     // If org_slug is provided, validate the organization and add org_id to filter
@@ -47,7 +48,7 @@ export const loginFunc = async ({
 
     const user = await userRepository
       .createQueryBuilder("user")
-      .where("user.email = :email", { email })
+      .where("user.email = :email", { email: normalizedLoginEmail })
       .andWhere("user.system_role IN (:...roles)", {
         roles: ADMIN_ALLOWED_ROLES,
       })
