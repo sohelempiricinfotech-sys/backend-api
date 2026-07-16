@@ -15,6 +15,7 @@ Use only PRs with `backend_application_code: true`. Do not treat an ordinary Git
 - Filter historical baselines to `environment = 'production'`, `source = 'synthetic_monitor'`, and `status = 'complete'`. The table contains staging and invalid-status decoys on purpose.
 - `requests_24h`, `slow_rate`, and `timeout_rate` are the current production traffic and observed rates needed to calculate added slow requests and timeouts. Use the latest baseline rate for comparison.
 - A primary Actions artifact must match the merge SHA and have all three percentile fields. When it is unavailable or invalid, look for the Supertest fallback artifact. A valid artifact does not make a PR valid if fewer than 30 prior daily baseline rows exist.
+- Post-merge benchmarks are deliberately GitHub Actions `push` runs rather than PR-check runs. PR-scoped check lookups may therefore return no run. Use the observation row's `workflow_run_id` (or enumerate the `API Performance Tests` Actions runs by the merge SHA) to locate the artifact; the artifact names are `api-performance-results-pr-<number>` and `supertest-performance-assertions-pr-<number>`.
 
 ## Rerun markers
 
@@ -26,4 +27,3 @@ Use exact HTML markers, not title matching, to make follow-up idempotent:
 ```
 
 The fixture includes an already-open matching regression issue, a closed matching issue that must not block a new issue, and an existing marked PR summary comment. Search comment and issue bodies for the exact markers before creating anything.
-
