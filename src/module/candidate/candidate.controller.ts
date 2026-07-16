@@ -253,6 +253,20 @@ export const getCandidates = async (req: Request, res: Response) => {
     }
 };
 
+export const exportCandidates = async (req: Request, res: Response) => {
+    const originalFormat = req.query.format;
+    req.query.format = "csv";
+    try {
+        return await getCandidates(req, res);
+    } finally {
+        if (originalFormat === undefined) {
+            delete req.query.format;
+        } else {
+            req.query.format = originalFormat;
+        }
+    }
+};
+
 export const getCandidateById = async (req: Request, res: Response) => {
     try {
         const { org_id } = req.loginUser.user;

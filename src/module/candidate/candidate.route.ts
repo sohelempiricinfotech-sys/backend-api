@@ -2,6 +2,7 @@ import express from "express";
 import {
     createCandidate,
     getCandidates,
+    exportCandidates,
     getCandidateById,
     deleteCandidate,
     updateCandidate,
@@ -16,6 +17,7 @@ const router = express.Router();
 
 router.post("/", zValidate(createCandidateType), createCandidate);
 router.get("/", getCandidates);
+router.get("/export", exportCandidates);
 
 // POST /api/candidates/send-email — send email to candidates by user IDs
 router.post("/send-email", zValidate(sendEmailToUsersSchema), sendEmailToUsersHandler);
